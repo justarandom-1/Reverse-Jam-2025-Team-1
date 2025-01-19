@@ -100,13 +100,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if(currentItem != 0){
+        if(currentItem != 0 && transform.childCount >= (int)currentItem){
             transform.GetChild((int) currentItem - 1).GetComponent<Animator>().Play("Unused");
         }
 
         currentItem = newItem;
 
-        if(transform.GetChild((int) currentItem - 1) != null){
+        if(transform.childCount >= (int)currentItem){
             transform.GetChild((int) currentItem - 1).GetComponent<Animator>().Play("Idle");
         }
 
