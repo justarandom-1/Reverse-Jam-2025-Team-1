@@ -5,6 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Wall
+  - Hammer
+  - Scissors
+  - Key
+  - BananaPeel
+  - Axolotl
+  - Enemy
   layers:
   - Default
   - TransparentFX

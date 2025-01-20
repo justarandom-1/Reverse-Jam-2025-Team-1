@@ -3,12 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Toolbar : MonoBehaviour
-{
+{   
+    public static Toolbar instance;
     // Start is called before the first frame update
     private Item currentItem;
     void Start()
     {
+        instance = this;
         currentItem = Item.None;
+    }
+
+    public void DepleteItem(Item item){
+        if(item != Item.None)
+            transform.GetChild((int)item - 1).transform.GetComponent<UnityEngine.UI.Image>().sprite = Resources.LoadAll<Sprite>("Toolbar/Buttons")[3];
+        if(item == currentItem)
+            currentItem = Item.None;
     }
 
     // Update is called once per frame
