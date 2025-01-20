@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Toolbar : MonoBehaviour
 {   
@@ -15,7 +16,8 @@ public class Toolbar : MonoBehaviour
 
     public void DepleteItem(Item item){
         if(item != Item.None)
-            transform.GetChild((int)item - 1).transform.GetComponent<UnityEngine.UI.Image>().sprite = Resources.LoadAll<Sprite>("Toolbar/Buttons")[3];
+            transform.GetChild((int)item - 1).gameObject.GetComponent<UnityEngine.UI.Image>().sprite = Resources.LoadAll<Sprite>("Toolbar/Buttons")[3];
+            // transform.GetChild((int)item - 1).gameObject.GetComponent<Button>().interactable = false;
         if(item == currentItem)
             currentItem = Item.None;
     }

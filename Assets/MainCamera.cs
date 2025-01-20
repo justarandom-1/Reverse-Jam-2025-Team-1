@@ -18,7 +18,7 @@ public class MainCamera : MonoBehaviour
             transform.position = new Vector3(playerX - 8.4F, transform.position.y, transform.position.z);
 
 
-        if(transform.position.x > 3 && transform.position.x < 19.8F){
+        if(transform.position.x > 3 && transform.position.x < 19.9F){
             transform.position = new Vector3(transform.position.x + 10 * Time.deltaTime, transform.position.y, transform.position.z);
         }
     }
