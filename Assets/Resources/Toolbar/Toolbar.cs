@@ -25,6 +25,11 @@ public class Toolbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("r"))
+            SceneChanger.Restart();
+        if (Input.GetKeyDown("h"))
+            SceneChanger.Home();
+
         for(int i = 1; i <= 5; i++)
         {
             if (Input.GetKeyDown("" + i))

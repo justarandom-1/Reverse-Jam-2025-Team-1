@@ -28,6 +28,9 @@ public class AxolotlController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(direction * 4, rb.velocity.y);
+        if(transform.position.x > 75)
+            rb.velocity = new Vector2(direction * 12, rb.velocity.y);
+        else
+            rb.velocity = new Vector2(direction * 4, rb.velocity.y);
     }
 }

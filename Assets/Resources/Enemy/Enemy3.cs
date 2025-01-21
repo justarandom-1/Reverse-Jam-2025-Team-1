@@ -26,7 +26,7 @@ public class Enemy3 : Enemy
     {
         base.Update();
 
-        if(transform.position.y < -4 && isAlive){
+        if(transform.position.y < -6 && isAlive){
             audioSource.Play();
             isAlive = false;
             isDead = true;

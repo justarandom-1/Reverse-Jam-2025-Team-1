@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(movementVector.x == -1 && cameraTransform.position.x - transform.position.x >= 8.4F)
+        if((movementVector.x == -1 && cameraTransform.position.x - transform.position.x >= 8.4F) || (transform.position.x > 111 && movementVector.x == 1))
             rb.velocity = new Vector2(0, rb.velocity.y);
         else   
             rb.velocity = new Vector2(speed * movementVector.x, rb.velocity.y);
@@ -117,6 +117,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public bool Equip(Item newItem){
+        if(newItem == currentItem)
+            return false;
         for(int i = 0; i < usedItems.Count; i++){
             if(usedItems[i] == newItem){
                 return false;

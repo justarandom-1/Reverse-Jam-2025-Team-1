@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 
 public class Enemy5 : Enemy
 {
@@ -31,7 +29,7 @@ public class Enemy5 : Enemy
             return;
 
         if(collision.gameObject.CompareTag("Player")){
-            ;
+            SceneChanger.Home();
         }
 
     }
@@ -39,6 +37,14 @@ public class Enemy5 : Enemy
     new void Update()
     {
         base.Update();
+
+        if(transform.position.y < -6 && isAlive){
+            audioSource.Play();
+            isAlive = false;
+            isDead = true;
+            GameObject.Find("Wall3").SetActive(false);
+            PlayerController.instance.DepleteItem(Item.Axolotl);
+        }
 
         if(isAlive){
             rb.velocity = new Vector2(direction * 2F, rb.velocity.y);
