@@ -17,13 +17,8 @@ public class AxolotlController : MonoBehaviour
 
     public void OnCollisionEnter2D (Collision2D other)
     {
-        if(other.gameObject.CompareTag("Ground"))
+        if(other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Enemy"))
             return;
-        if(other.gameObject.CompareTag("Enemy"))
-        {
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>());
-            return;
-        }
 
         direction *= -1;
 

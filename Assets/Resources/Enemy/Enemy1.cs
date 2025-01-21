@@ -28,6 +28,21 @@ public class Enemy: MonoBehaviour
         if(direction * transform.localScale.x < 0)
             transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
     }
+
+    protected void OnTriggerEnter2D (Collider2D other)
+    {
+        if(!isAlive)
+            return;
+        if(other.gameObject.CompareTag("Hammer"))
+            audioSource.PlayOneShot(Resources.Load<AudioClip>("Toolbar/hammersound"));
+        if(other.gameObject.CompareTag("Hammer") || other.gameObject.CompareTag("Scissors") || (other.gameObject.CompareTag("BananaPeel") && animator.GetBool("isMoving")))
+        {
+            animator.Play("EnemyFall");
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
+            isAlive = false;
+            murderWeapon = PlayerController.instance.GetCurrentItem();
+        }
+    }
     
 }
 public class Enemy1 : Enemy
@@ -36,17 +51,6 @@ public class Enemy1 : Enemy
     {
         base.Start();
         animator.SetBool("isMoving", true);
-    }
-    public void OnTriggerEnter2D (Collider2D other)
-    {
-        if(!isAlive)
-            return;
-        if(other.gameObject.CompareTag("Hammer") || other.gameObject.CompareTag("Scissors") || other.gameObject.CompareTag("BananaPeel")){
-            animator.Play("EnemyFall");
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Player").GetComponent<Collider2D>());
-            isAlive = false;
-            murderWeapon = PlayerController.instance.GetCurrentItem();
-        }
     }
 
     new void Update()
@@ -59,6 +63,7 @@ public class Enemy1 : Enemy
             if((transform.position.x < 0 && direction == -1) || (transform.position.x > 7 && direction == 1))
                 direction *= -1;
         }else if(!isDead && animator.GetCurrentAnimatorStateInfo(0).IsName("EnemyDead")){
+            audioSource.Play();
             isDead = true;
             GameObject.Find("Wall1").SetActive(false);
             PlayerController.instance.DepleteItem(murderWeapon);

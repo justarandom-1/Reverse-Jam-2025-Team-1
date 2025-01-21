@@ -52,11 +52,13 @@ public class PlayerController : MonoBehaviour
 
         BananaPeel = Resources.Load("Toolbar/BananaPeel") as GameObject;
         Axolotl = Resources.Load("Toolbar/Axolotl") as GameObject;
+
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), GameObject.Find("Dog").GetComponent<Collider2D>());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Platform") )
         {
             jumpsFromGround = 0;
         }

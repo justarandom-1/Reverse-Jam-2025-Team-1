@@ -12,6 +12,9 @@ TagManager:
   - BananaPeel
   - Axolotl
   - Enemy
+  - Platform
+  - Dog
+  - Cage
   layers:
   - Default
   - TransparentFX
